@@ -1,9 +1,12 @@
 ﻿namespace Guia_10._1.Models
 {
-    internal class Repartidor
+    public class Repartidor
     {
         public int Capacidad { get; }
-        public int Ocupacion { get; }
+        public int Ocupacion
+        {
+            get {return entregas.Count(); }
+        }
 
         Stack<Paquete> entregas = new Stack<Paquete>();
 
@@ -14,7 +17,7 @@
 
         public Paquete Revisar()
         {
-            if (entregas.Count() >= 0)
+            if (entregas.Count >= 0)
             {
                 return entregas.Peek();
             }
@@ -26,13 +29,14 @@
             if (paq != null)
             {
                 entregas.Push(paq);
+                
             }
         }
 
         public Paquete Descargar()
         {
             Paquete eliminado = null;
-            if (entregas.Count()>=0)
+            if (entregas.Count>=0)
             {
                eliminado= entregas.Pop();
                 return eliminado;
@@ -42,11 +46,8 @@
 
         public bool TieneCapacidadDisponible()
         {
-            if (entregas.Count()< Capacidad)
-            {
-                return true;
-            }
-            return false;
+
+            return Capacidad - Ocupacion > 0;
         }
     }
 }

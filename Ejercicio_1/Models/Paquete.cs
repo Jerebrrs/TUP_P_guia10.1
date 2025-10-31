@@ -1,6 +1,6 @@
 ﻿namespace Guia_10._1.Models
 {
-    internal class Paquete
+    public class Paquete
     {
         public int DNiRemitente { get; set; }
         public string NombreRemitente { get; set; }
@@ -14,7 +14,7 @@
         }
         public override string ToString()
         {
-            return $@"{NombreRemitente}({DNiRemitente} - {Direccion})";
+            return $@"{NombreRemitente}({DNiRemitente}) - {Direccion}";
         }
     }
 }
