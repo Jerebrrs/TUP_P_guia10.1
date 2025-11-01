@@ -17,7 +17,7 @@
 
         public Paquete Revisar()
         {
-            if (entregas.Count >= 0)
+            if (entregas.Count > 0)
             {
                 return entregas.Peek();
             }

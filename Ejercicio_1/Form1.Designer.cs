@@ -180,6 +180,7 @@
             btnEntregarPaquete.TabIndex = 9;
             btnEntregarPaquete.Text = "Entregar Paquete";
             btnEntregarPaquete.UseVisualStyleBackColor = true;
+            btnEntregarPaquete.Click += btnEntregarPaquete_Click;
             // 
             // btnIniciarReparto
             // 
@@ -189,6 +190,7 @@
             btnIniciarReparto.TabIndex = 8;
             btnIniciarReparto.Text = "Iniciar Reparto";
             btnIniciarReparto.UseVisualStyleBackColor = true;
+            btnIniciarReparto.Click += btnIniciarReparto_Click;
             // 
             // groupBox4
             // 

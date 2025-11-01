@@ -9,9 +9,10 @@ namespace Guia_10._1
             InitializeComponent();
         }
         Despachador despachador = new Despachador();
+        Repartidor rep = null;
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            btnEntregarPaquete.Enabled = false;
         }
 
         private void btnCorrespondencia_Click(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace Guia_10._1
         private void button1_Click(object sender, EventArgs e)
         {
             CapCamion vtn = new CapCamion();
-            Repartidor rep = null;
+
             if (vtn.ShowDialog() == DialogResult.OK)
             {
                 lbListadoAEntregar.Items.Clear();
@@ -66,6 +67,54 @@ namespace Guia_10._1
                         lbListadoAEntregar.Items.Add(paq);
                     }
                 } while (paq != null);
+            }
+        }
+
+        private void btnIniciarReparto_Click(object sender, EventArgs e)
+        {
+            if (rep != null)
+            {
+                btnEntregarPaquete.Enabled = true;
+
+
+                Paquete paq = rep.Revisar();
+
+                if (paq != null)
+                {
+                    lbNombre.Text = paq.NombreRemitente;
+                    lbDni.Text = Convert.ToString(paq.DNiRemitente);
+                    lbDireccion.Text = paq.Direccion;
+                    btnIniciarReparto.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay camión preparado");
+            }
+
+
+        }
+
+        private void btnEntregarPaquete_Click(object sender, EventArgs e)
+        {
+            Paquete paquete = rep.Descargar();
+
+            lbListadoAEntregar.Items.Remove(paquete);
+
+            paquete = rep.Revisar();
+            if (paquete != null)
+            {
+                lbDni.Text = paquete.DNiRemitente.ToString();
+                lbNombre.Text = paquete.NombreRemitente;
+                lbDireccion.Text = paquete.Direccion;
+            }
+            else
+            {
+                lbDni.Text = "".PadRight(10, ' ');
+                lbNombre.Text = "".PadRight(10, ' ');
+                lbDireccion.Text = "".PadRight(10, ' ');
+                btnEntregarPaquete.Enabled = false;
+                btnIniciarReparto.Enabled = true;
             }
         }
     }
